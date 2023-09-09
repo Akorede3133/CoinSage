@@ -6,8 +6,10 @@ const Layout = () => {
   return (
     <div className='md:grid grid-cols-[20%,80%] bg-violet-50'>
       <NavBar />
-      <Outlet />
-      <Footer />
+      <div>
+        <Outlet />
+        <Footer />
+      </div>
     </div>
   )
 }
