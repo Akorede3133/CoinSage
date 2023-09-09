@@ -3,7 +3,7 @@ import NavBar from './NavBar';
 
 const Layout = () => {
   return (
-    <div>
+    <div className='md:grid grid-cols-[20%,80%]'>
       <NavBar />
       <Outlet />
     </div>
