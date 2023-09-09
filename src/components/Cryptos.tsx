@@ -11,10 +11,18 @@ const Cryptos = () => {
     </Link>
     </article>
     <ul className='mt-4 grid gap-3 grid-cols-[repeat(auto-fill,minmax(220px,1fr))]'>
-      <CryptoCard />
-      <CryptoCard />
-      <CryptoCard />
-      <CryptoCard />
+      <Link to='currencies/2'>
+        <CryptoCard />
+      </Link>
+      <Link to='currencies/2'>
+        <CryptoCard />
+      </Link>
+      <Link to='currencies/2'>
+        <CryptoCard />
+      </Link>
+      <Link to='currencies/2'>
+        <CryptoCard />
+      </Link>
     </ul>
    </section>
   )
