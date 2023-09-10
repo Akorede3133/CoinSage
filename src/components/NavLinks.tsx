@@ -9,7 +9,7 @@ const NavLinks = () => {
     backgroundColor: 'rgb(96, 165, 250)'
   }
   return (
-    <nav className=' absolute md:static right-0 top-[100%]  md:bg-[unset] hidden bg-slate-900 md:w-full  md:block w-[30%]'>
+    <nav className=' absolute md:static right-0 top-[100%]  md:bg-[unset] hidden bg-slate-900 md:w-full  md:block w-[35%]'>
       <ul className='text-white'>
         <li>
           <NavLink to='/' className='flex items-center gap-4  py-3 px-4 hover:bg-blue-300 w-full' style={({ isActive }) => isActive ? styles : {}}>
