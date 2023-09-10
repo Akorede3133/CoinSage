@@ -1,7 +1,7 @@
 import img from '../assets/coin-logo.png'
 const CryptoCard = () => {
   return (
-    <li className=' shadow-md bg-white rounded-md pt-6'>
+    <li className='shadow-md bg-white rounded-md pt-6'>
       <section className='border-b px-4 border-slate-300 flex justify-between items-center'>
         <article className='flex items-center gap-2'>
           <span>1.</span>
