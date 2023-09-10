@@ -4,9 +4,9 @@ import Footer from './Footer';
 
 const Layout = () => {
   return (
-    <div className='md:grid grid-cols-[20%,80%] bg-violet-50'>
+    <div className='bg-violet-50'>
       <NavBar />
-      <div>
+      <div className='md:absolute md:w-[80%] md:left-[20%]'>
         <Outlet />
         <Footer />
       </div>
