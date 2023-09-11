@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
-interface coinProp {
-  uuid: string,
+export interface coinProp {
+  id: string,
   name: string,
   iconUrl: string,
   marketCap: string,
