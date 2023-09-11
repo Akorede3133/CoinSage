@@ -1,8 +1,7 @@
 import { Link } from 'react-router-dom';
 import { useAppSelector } from '../app/hooks';
 import CryptoCard from './CryptoCard';
-import { coinProp } from '../features/coins/coinsSlice';
-
+import { coinProp } from '../interface';
 const Cryptos = () => {
   const { coins } = useAppSelector((state) => state.coins)
   console.log(coins);
@@ -18,10 +17,10 @@ const Cryptos = () => {
     <ul className='mt-4 grid gap-8 grid-cols-[repeat(auto-fill,minmax(220px,1fr))]'>
       {
         coins.map((coin: coinProp) => {
-          const { id, change, price, rank, marketCap, iconUrl, name} = coin;
+          const { uuid: id, change, price, rank, marketCap, iconUrl, name} = coin;          
           return (
             <Link to='currencies/2' key={id}>
-              <CryptoCard id={id} change={change} price={price} rank={rank} marketCap={marketCap} iconUrl={iconUrl} name={name} />
+              <CryptoCard change={change} price={price} rank={rank} marketCap={marketCap} iconUrl={iconUrl} name={name} />
             </Link>
           )
         })

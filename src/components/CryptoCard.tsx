@@ -1,5 +1,5 @@
 import millify from "millify";
-import { coinProp } from '../features/coins/coinsSlice'
+import { coinProp } from "../interface";
 const CryptoCard = ({price, marketCap, rank, iconUrl, name, change}: coinProp) => {
   return (
     <li className='shadow-md bg-white rounded-md'>
