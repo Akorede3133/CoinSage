@@ -1,9 +1,12 @@
+import { useEffect } from "react";
 import { 
   createBrowserRouter,
   createRoutesFromElements,
   RouterProvider,
   Route 
-} from "react-router-dom"
+} from "react-router-dom";
+import { useAppDispatch } from "./app/hooks";
+import { getCoins } from "./features/coins/coinsSlice";
 import Home from "./pages/Home"
 import Currencies from "./pages/Currencies"
 import Exchanges from "./pages/Exchanges"
@@ -23,6 +26,10 @@ const router = createBrowserRouter(createRoutesFromElements(
   </Route>
 ))
 function App() {
+  const dispatch = useAppDispatch();
+  useEffect(() => {
+    dispatch(getCoins(10))
+  }, [])
   return (
     <div>
       <RouterProvider router={router} />
