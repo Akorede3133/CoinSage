@@ -6,7 +6,7 @@ const Layout = () => {
   return (
     <div className='bg-violet-50'>
       <NavBar />
-      <div className='md:absolute md:w-[80%] md:left-[20%]'>
+      <div className='md:absolute xl:w-[80%] xl:left-[20%] md:w-[70%] md:left-[30%]'>
         <Outlet />
         <Footer />
       </div>

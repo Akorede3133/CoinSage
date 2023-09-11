@@ -9,7 +9,7 @@ const HomeNews = () => {
       Show more
       </Link>
       </article>
-      <ul className='mt-4 grid gap-3 grid-cols-[repeat(auto-fill,minmax(300px,1fr))]'>
+      <ul className='mt-4 grid gap-3 md:grid-cols-[repeat(auto-fill,minmax(300px,1fr))]'>
         <NewsCard />
         <NewsCard />
         <NewsCard />
