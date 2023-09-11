@@ -9,6 +9,7 @@ export interface coinProp {
 }
 export interface coinsProp {
   status: string,
+  message?: string
   data: {stats: globalStatsProp, coins: coinProp[]}
 }
 export interface globalStatsProp {
@@ -39,10 +40,10 @@ export interface initialStateProp {
 export interface newsProp {
   name: string;
   url: string;
-  image: string;
-  desc: string;
-  provider: { name: string, logo: string}[];
-  date: string;
+  image: { thumbnail: { contentUrl: string }};
+  description: string;
+  provider: { name: string, image:  { thumbnail: { contentUrl: string }}}[];
+  datePublished: string;
 }
 export interface newsStateProp {
   news: newsProp[];

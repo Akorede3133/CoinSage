@@ -13,6 +13,8 @@ export const getNews = createAsyncThunk('news/getNews', async (params: {count: n
   const {count, query} = params;
   try {
     const { value } = await fetchNews(count, query);    
+    console.log(value);
+    
     return value;
   } catch (error) {
     return error;

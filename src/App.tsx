@@ -30,7 +30,7 @@ function App() {
   const dispatch = useAppDispatch();
   useEffect(() => {
     dispatch(getCoins(10))
-    dispatch(getNews({count: 11, query: 'cryptocurrency'}));
+    dispatch(getNews({count: 7, query: 'cryptocurrency'}));
   }, [])
   return (
     <div>
