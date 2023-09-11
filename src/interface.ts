@@ -35,3 +35,17 @@ export interface initialStateProp {
   error: string | undefined,
   globalStats: globalStatsProp,
 }
+
+export interface newsProp {
+  name: string;
+  url: string;
+  image: string;
+  desc: string;
+  provider: { name: string, logo: string}[];
+  date: string;
+}
+export interface newsStateProp {
+  news: newsProp[];
+  loading: boolean;
+  error: string;
+}
