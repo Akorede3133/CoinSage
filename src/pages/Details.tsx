@@ -1,3 +1,10 @@
+import {FaRankingStar} from 'react-icons/fa6';
+import {BsCurrencyExchange, BsSpeedometer2} from 'react-icons/bs'
+import {SiCoinmarketcap} from 'react-icons/si';
+import {GiPodiumWinner} from 'react-icons/gi';
+import {AiOutlineBarChart} from 'react-icons/ai';
+import {PiWarningCircleLight} from 'react-icons/pi';
+
 const Details = () => {
   return (
     <section className=" min-h-screen w-[85%] mx-auto">
@@ -14,29 +21,30 @@ const Details = () => {
         <option value="3h">3h</option>
         <option value="3h">3h</option>
       </select>
+
       <section className="md:grid grid-cols-2">
         <article>
           <h3 className=" text-2xl text-blue-400 pt-4">Bitcoin Value Statistics</h3>
           <p className="py-4">An overview showing the statistics of Bitcoin, such as the base and quote currency, the rank, and trading volume.</p>
           <ul>
             <li className="flex justify-between border-b border-b-slate-300 py-4 px-6">
-              <p>Price to USD</p>
+              <p><BsCurrencyExchange /> Price to USD</p>
               <p className=" font-bold">$ 26K</p>
             </li>
             <li className="flex justify-between border-b border-b-slate-300 py-4 px-6">
-              <p># Rank</p>
+              <p><FaRankingStar /> Rank</p>
               <p className=" font-bold">1</p>
             </li>
             <li className="flex justify-between border-b border-b-slate-300 py-4 px-6">
-              <p>24h Volume</p>
+              <p><BsSpeedometer2 /> 24h Volume</p>
               <p className=" font-bold">$ 26K</p>
             </li>
             <li className="flex justify-between border-b border-b-slate-300 py-4 px-6">
-              <p>Market Cap</p>
+              <p><SiCoinmarketcap /> Market Cap</p>
               <p className=" font-bold">$ 506.8B</p>
             </li>
             <li className="flex justify-between border-b border-b-slate-300 py-4 px-6">
-              <p>All-time-high(daily avg.)</p>
+              <p> <GiPodiumWinner /> All-time-high(daily avg.)</p>
               <p className=" font-bold">$ 68.8k</p>
             </li>
           </ul>
@@ -46,15 +54,15 @@ const Details = () => {
             <p className="py-4">An overview showing the statistics of Bitcoin, such as the base and quote currency, the rank, and trading volume.</p>
             <ul>
               <li className="flex justify-between border-b border-b-slate-300 py-4 px-6">
-                <p>Number Of Markets</p>
+                <p><AiOutlineBarChart /> Number Of Markets</p>
                 <p className=" font-bold">3415</p>
               </li>
               <li className="flex justify-between border-b border-b-slate-300 py-4 px-6">
-                <p>Number of Exchanges</p>
+                <p> <BsCurrencyExchange /> Number of Exchanges</p>
                 <p className=" font-bold">119</p>
               </li>
               <li className="flex justify-between border-b border-b-slate-300 py-4 px-6">
-                <p>Approved Supply</p>
+                <p><PiWarningCircleLight /> Approved Supply</p>
                 <p className=" font-bold">$ 26K</p>
               </li>
               <li className="flex justify-between border-b border-b-slate-300 py-4 px-6">
