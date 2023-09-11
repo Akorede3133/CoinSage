@@ -47,5 +47,5 @@ export interface newsProp {
 export interface newsStateProp {
   news: newsProp[];
   loading: boolean;
-  error: string;
+  error: string | undefined;
 }

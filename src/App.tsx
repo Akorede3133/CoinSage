@@ -14,6 +14,7 @@ import News from "./pages/News"
 import Error404 from "./pages/Error404"
 import Layout from "./components/Layout"
 import Details from "./pages/Details"
+import { getNews } from "./features/news/newsSlice";
 
 const router = createBrowserRouter(createRoutesFromElements(
   <Route element={<Layout />}>
@@ -29,6 +30,7 @@ function App() {
   const dispatch = useAppDispatch();
   useEffect(() => {
     dispatch(getCoins(10))
+    dispatch(getNews({count: 11, query: 'cryptocurrency'}));
   }, [])
   return (
     <div>

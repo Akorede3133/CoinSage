@@ -4,7 +4,6 @@ import CryptoCard from './CryptoCard';
 import { coinProp } from '../interface';
 const Cryptos = () => {
   const { coins } = useAppSelector((state) => state.coins)
-  console.log(coins);
   
   return (
     <section className='mt-10'>
