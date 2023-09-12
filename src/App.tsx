@@ -1,12 +1,9 @@
-import { useEffect } from "react";
 import { 
   createBrowserRouter,
   createRoutesFromElements,
   RouterProvider,
   Route 
 } from "react-router-dom";
-import { useAppDispatch } from "./app/hooks";
-import { getCoins } from "./features/coins/coinsSlice";
 import Home from "./pages/Home"
 import Currencies from "./pages/Currencies"
 import Exchanges from "./pages/Exchanges"
@@ -14,7 +11,6 @@ import News from "./pages/News"
 import Error404 from "./pages/Error404"
 import Layout from "./components/Layout"
 import Details from "./pages/Details"
-import { getNews } from "./features/news/newsSlice";
 
 const router = createBrowserRouter(createRoutesFromElements(
   <Route element={<Layout />}>
@@ -27,11 +23,6 @@ const router = createBrowserRouter(createRoutesFromElements(
   </Route>
 ))
 function App() {
-  const dispatch = useAppDispatch();
-  useEffect(() => {
-    dispatch(getCoins(10))
-    dispatch(getNews({count: 7, query: 'cryptocurrency'}));
-  }, [])
   return (
     <div>
       <RouterProvider router={router} />
