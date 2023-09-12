@@ -24,7 +24,7 @@ const News = () => {
   useEffect(() => {
     dispatch(getCoins(100));
     dispatch(getNews({count: 13, query: placeholder}));
-  }, [placeholder])
+  }, [placeholder, dispatch])
   const handleClick = (value: string) => {
     setSearch('');
     setPlaceholder(value)
@@ -52,15 +52,15 @@ const News = () => {
             onChange={(e) => setSearch(e.target.value)}
           />
           <div>
-            <AiOutlineSearch className="hidden" />
-            <RiArrowDropDownLine className="text-3xl text-slate-400" />
+            { showList ? <AiOutlineSearch className=" text-slate-400" />
+            : <RiArrowDropDownLine className="text-3xl text-slate-400" /> }
           </div>
         </div>
         { showList &&
-          <ul className='bg-white grid gap-2 w-[200px] rounded-md mt-1 py-3  max-h-[200px] overflow-auto shadow-md'>
+          <ul className='bg-white grid  w-[200px] rounded-md mt-1 py-3  max-h-[200px] overflow-auto shadow-md'>
           {
             searchedCoins.length == 0 && search ? <p className='px-4'>No data</p>
-            : displayedCoins.map((coin) => (<li key={coin.uuid}className={`hover:bg-slate-300 px-4 cursor-pointer ${placeholder === coin.name && 'bg-blue-500'}`} onClick={() => handleClick(coin.name)}>{coin.name}</li>))
+            : displayedCoins.map((coin) => (<li key={coin.uuid}className={`hover:bg-slate-200 px-4 py-2 cursor-pointer rounded ${placeholder === coin.name && 'bg-blue-400'}`} onClick={() => handleClick(coin.name)}>{coin.name}</li>))
           }
           
         </ul>
