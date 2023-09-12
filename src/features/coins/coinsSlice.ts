@@ -16,6 +16,7 @@ export const getCoins = createAsyncThunk('coins/getCoins', async (count: number)
 const initialState: initialStateProp = {
   loading: true,
   coins: [],
+  searchedCoins: [],
   singleCoin: {} as singleCoinProp,
   globalStats: {} as globalStatsProp,
   error: ''
@@ -24,7 +25,11 @@ const initialState: initialStateProp = {
 const coinsSlice = createSlice({
   name: 'coins',
   initialState,
-  reducers: {},
+  reducers: {
+    searchCoins: (state, action: PayloadAction<string>) => {
+      state.searchedCoins = state.coins.filter((coin) => coin.name.toLowerCase().includes(action.payload.toLowerCase()));
+    }
+  },
   extraReducers: (builder) => {
     builder
       .addCase(getCoins.pending, (state) => {
@@ -32,13 +37,11 @@ const coinsSlice = createSlice({
       })
       .addCase(getCoins.fulfilled, (state, action: PayloadAction<coinsProp> ) => {
         state.loading = false;
-        console.log();
         if (action.payload.message) {
           state.loading = false; 
           state.error = 'failed to fetch'         
           return;
         }
-        
         const {data: { coins, stats }} =  action.payload;
         state.globalStats = stats
         state.coins = coins;
@@ -50,4 +53,5 @@ const coinsSlice = createSlice({
   }
 });
 
+export const { searchCoins } = coinsSlice.actions
 export default coinsSlice.reducer;
