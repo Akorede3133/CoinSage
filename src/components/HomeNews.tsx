@@ -9,7 +9,7 @@ const HomeNews = () => {
     <section className='mt-10'>
       <article className='flex justify-between gap-4'>
       <h3 className='text-2xl'>Latest Crypto News</h3>
-      <Link to='currencies' className=' text-blue-600 text-2xl font-medium'>
+      <Link to='news' className=' text-blue-600 text-2xl font-medium'>
       Show more
       </Link>
       </article>
