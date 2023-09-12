@@ -18,7 +18,7 @@ const Cryptos = () => {
         coins.map((coin: coinProp) => {
           const { uuid: id, change, price, rank, marketCap, iconUrl, name} = coin;          
           return (
-            <Link to='currencies/2' key={id}>
+            <Link to={`currencies/${id}`} key={id}>
               <CryptoCard change={change} price={price} rank={rank} marketCap={marketCap} iconUrl={iconUrl} name={name} />
             </Link>
           )
@@ -29,4 +29,4 @@ const Cryptos = () => {
   )
 }
 
-export default Cryptos
+export default Cryptos;
