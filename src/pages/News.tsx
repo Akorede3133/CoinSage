@@ -1,21 +1,37 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useAppSelector, useAppDispatch } from '../app/hooks';
-import { newsProp } from '../interface';
+import { coinProp, newsProp } from '../interface';
 import { getNews } from '../features/news/newsSlice';
 import NewsCard from '../components/NewsCard'
 import {AiOutlineSearch} from 'react-icons/ai';
 import {RiArrowDropDownLine} from 'react-icons/ri';
+import { getCoins } from '../features/coins/coinsSlice';
 
 const News = () => {
   const { news, loading, error } = useAppSelector((state) => state.news);
-  const { coins } = useAppSelector((state) => state.coins);
+  const { coins, loading: coinLoading } = useAppSelector((state) => state.coins);
+  const [searchedCoins, setSearchedCoins] = useState<coinProp[]>(coins)
+  const [search, setSearch] = useState<string>('');
+  const [showList, setShowList] = useState(false);
+  const [placeholder, setPlaceholder] = useState('select a crypto');
+  const displayedCoins = search ? searchedCoins : coins;
   
   const dispatch = useAppDispatch();
-  
   useEffect(() => {
-    // dispatch(getNews({count: 13, query: 'cryptocurrency'}));
-  }, [])
-  if (loading) {
+    const newVal = coins.filter((coin) => coin.name.toLowerCase().includes(search.toLowerCase()))
+    setSearchedCoins(newVal)
+  }, [search])
+  useEffect(() => {
+    dispatch(getCoins(100));
+    dispatch(getNews({count: 13, query: placeholder}));
+  }, [placeholder])
+  const handleClick = (value: string) => {
+    setSearch('');
+    setPlaceholder(value)
+    setShowList(false)
+    setSearchedCoins(coins)
+  }
+  if (loading && coinLoading) {
     return <h2>Loading...</h2>
   }
   if (error) {
@@ -29,20 +45,26 @@ const News = () => {
             type="text" 
             name="" 
             id="" 
+            value={search}
             className='border-0 bg-transparent outline-none w-[100%]'
-            placeholder='Select a crypto'
+            placeholder={placeholder}
+            onClick={() => setShowList(true)}
+            onChange={(e) => setSearch(e.target.value)}
           />
           <div>
             <AiOutlineSearch className="hidden" />
             <RiArrowDropDownLine className="text-3xl text-slate-400" />
           </div>
         </div>
-        <ul className='bg-white grid gap-2 w-[200px] rounded-md mt-1 py-3 h-[200px] overflow-auto'>
+        { showList &&
+          <ul className='bg-white grid gap-2 w-[200px] rounded-md mt-1 py-3  max-h-[200px] overflow-auto shadow-md'>
           {
-            coins.map((coin) => (<li className='hover:bg-slate-300 px-4 cursor-pointer'>{coin.name}</li>))
+            searchedCoins.length == 0 && search ? <p className='px-4'>No data</p>
+            : displayedCoins.map((coin) => (<li key={coin.uuid}className={`hover:bg-slate-300 px-4 cursor-pointer ${placeholder === coin.name && 'bg-blue-500'}`} onClick={() => handleClick(coin.name)}>{coin.name}</li>))
           }
           
         </ul>
+        }
       </article>
       <ul className='mt-5 grid gap-8 md:grid-cols-[repeat(auto-fill,minmax(300px,1fr))]'>
       {

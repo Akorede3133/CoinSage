@@ -36,7 +36,7 @@ const Currencies = () => {
       </div>
       <ul className="mt-5 grid grid-cols-[repeat(auto-fill,minmax(300px,1fr))] gap-10">
       {
-        displayedCoins.length === 0 ? <h2>No match found...</h2>
+        displayedCoins.length === 0 && search ? <h2>No match found...</h2>
         : displayedCoins.map((coin: coinProp) => {
           const { uuid: id, change, price, rank, marketCap, iconUrl, name} = coin;          
           return (
