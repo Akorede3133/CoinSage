@@ -13,7 +13,7 @@ const News = () => {
   const [searchedCoins, setSearchedCoins] = useState<coinProp[]>(coins)
   const [search, setSearch] = useState<string>('');
   const [showList, setShowList] = useState(false);
-  const [placeholder, setPlaceholder] = useState('select a crypto');
+  const [placeholder, setPlaceholder] = useState('Select a crypto');
   const displayedCoins = search ? searchedCoins : coins;
   
   const dispatch = useAppDispatch();
@@ -48,7 +48,7 @@ const News = () => {
             value={search}
             className='border-0 bg-transparent outline-none w-[100%]'
             placeholder={placeholder}
-            onClick={() => setShowList(true)}
+            onFocus={() => setShowList(true)}
             onChange={(e) => setSearch(e.target.value)}
           />
           <div>
@@ -62,7 +62,6 @@ const News = () => {
             searchedCoins.length == 0 && search ? <p className='px-4'>No data</p>
             : displayedCoins.map((coin) => (<li key={coin.uuid}className={`hover:bg-slate-200 px-4 py-2 cursor-pointer rounded ${placeholder === coin.name && 'bg-blue-400'}`} onClick={() => handleClick(coin.name)}>{coin.name}</li>))
           }
-          
         </ul>
         }
       </article>
@@ -88,4 +87,4 @@ const News = () => {
   )
 }
 
-export default News
+export default News;
