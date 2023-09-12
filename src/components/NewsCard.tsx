@@ -8,11 +8,10 @@ const NewsCard = ({ description, name, url, image, provider,datePublished }: new
   const providerName = provider[0]?.name
   const providerImg = provider[0]?.image?.thumbnail?.contentUrl;
   const defaultImg = 'https://www.bing.com/th?id=OVFT.0Nn2k-KldJKOsUdDrNRDKC&pid=News'
-  console.log(datePublished);
   const currentTime = moment();
-const pastTime = moment(datePublished);
+  const pastTime = moment(datePublished);
 
-const timeAgo = pastTime.from(currentTime);
+  const timeAgo = pastTime.from(currentTime);
 
   
   return (
@@ -30,7 +29,7 @@ const timeAgo = pastTime.from(currentTime);
         <footer 
           className='flex justify-between items-center'>
           <div className='flex gap-2 items-center mt-4'>
-            <img src={providerImg} alt="" className='w-[40px] h-[20px] object-cover'/>
+            <img src={providerImg ? providerImg : defaultImg} alt="" className='w-[40px] h-[40px] object-cover rounded-full'/>
             <p>{providerName}</p>
           </div>
           <p>{timeAgo}</p>
