@@ -17,6 +17,15 @@ export interface SinglecoinDataProp {
   message?: string
   data: {coin: singleCoinProp}
 }
+export interface historyDataProp {
+  status: string,
+  message?: string
+  data: {history: historyProp[]}
+}
+export interface historyProp {
+  price: string;
+  timestamp: number;
+}
 export interface globalStatsProp {
   totalCoins: number,
   totalMarketCap: string,
@@ -37,9 +46,11 @@ export interface singleCoinProp extends coinProp {
 export interface initialStateProp {
   loading: boolean,
   singleCoinLoading: boolean,
+  historyLoading: boolean,
   coins: coinProp[],
   searchedCoins: coinProp[]
   singleCoin: singleCoinProp,
+  history: historyProp[],
   error: string | undefined,
   globalStats: globalStatsProp,
 }

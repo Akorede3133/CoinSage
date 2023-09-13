@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
-import { initialStateProp, globalStatsProp, singleCoinProp, coinsProp, SinglecoinDataProp } from "../../interface";
-import { fetchCoins, fetchSingleCoin } from "../../api/coinsApi";
+import { initialStateProp, globalStatsProp, singleCoinProp, coinsProp, SinglecoinDataProp, historyDataProp } from "../../interface";
+import { fetchCoins, fetchHistory, fetchSingleCoin } from "../../api/coinsApi";
 
 export const getCoins = createAsyncThunk('coins/getCoins', async (count: number) => {
   try {
@@ -19,13 +19,24 @@ export const getCoin = createAsyncThunk('coins/getCoin', async (id: string) => {
     return error;
   }
 })
+export const getHistory = createAsyncThunk('coins/getHistory', async (obj: {id: string, period: string}) => {
+  const { id, period } = obj;
+  try {
+    const result = await fetchHistory(id, period);
+    return result;
+  } catch (error) {
+    return error;
+  }
+})
 
 
 const initialState: initialStateProp = {
   loading: true,
   singleCoinLoading: true,
+  historyLoading: true,
   coins: [],
   searchedCoins: [],
+  history: [],
   singleCoin: {} as singleCoinProp,
   globalStats: {} as globalStatsProp,
   error: ''
@@ -74,6 +85,23 @@ const coinsSlice = createSlice({
       })
       .addCase(getCoin.rejected, (state, action) => {
         state.singleCoinLoading = false,
+        state.error =  action.error.message;
+      })
+      .addCase(getHistory.pending, (state) => {
+        state.historyLoading = true;
+      })
+      .addCase(getHistory.fulfilled, (state, action: PayloadAction<historyDataProp> ) => {
+        state.historyLoading = false;
+        if (action.payload.message) {
+          state.loading = false; 
+          state.error = 'failed to fetch'         
+          return;
+        }        
+        const { data: { history }}  =  action.payload;
+        state.history = history;
+      })
+      .addCase(getHistory.rejected, (state, action) => {
+        state.historyLoading = false,
         state.error =  action.error.message;
       })
   }

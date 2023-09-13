@@ -29,3 +29,12 @@ export const fetchSingleCoin = async (id: string) => {
     return error;
   }
 }
+export const fetchHistory = async (id: string, period: string) => {
+  try {
+    const response = await fetch(`${baserUrl}coin/${id}/history?timePeriod=${period}`, options);
+    const result = await response.json();
+    return result;
+  } catch (error) {
+    return error;
+  }
+}

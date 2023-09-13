@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { useParams } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../app/hooks';
-import { getCoin } from '../features/coins/coinsSlice';
+import { getCoin, getHistory } from '../features/coins/coinsSlice';
 import {FaRankingStar} from 'react-icons/fa6';
 import {BsCurrencyExchange, BsSpeedometer2} from 'react-icons/bs'
 import {SiCoinmarketcap} from 'react-icons/si';
@@ -13,11 +13,13 @@ import millify from 'millify';
 const Details = () => {
   const { id } = useParams();
   const dispatch = useAppDispatch();
-  const { singleCoin, singleCoinLoading, error } = useAppSelector((state) => state.coins);
+  const { singleCoin, singleCoinLoading, error, history } = useAppSelector((state) => state.coins);
+    console.log(history);
     
   useEffect(() => {
     if (id) {
       dispatch(getCoin(id))
+      dispatch(getHistory({id, period: '24h'}))
     }
   }, [id, dispatch]);
   if (singleCoinLoading) {
@@ -84,7 +86,6 @@ const Details = () => {
     },
 
   ]
-  console.log(otherStats, coinStats);
   
   return (
     <section className=" min-h-screen w-[85%] md:w-[90%] mx-auto my-10">
