@@ -36,6 +36,7 @@ export interface singleCoinProp extends coinProp {
 }
 export interface initialStateProp {
   loading: boolean,
+  singleCoinLoading: boolean,
   coins: coinProp[],
   searchedCoins: coinProp[]
   singleCoin: singleCoinProp,

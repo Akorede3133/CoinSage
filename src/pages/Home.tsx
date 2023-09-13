@@ -7,15 +7,16 @@ import Cryptos from '../components/Cryptos';
 import HomeNews from '../components/HomeNews';
 const Home = () => {
   const { loading, error } = useAppSelector((state) => state.coins);
+  const { loading: newsLoading, error: newsError } = useAppSelector((state) => state.news);
   const dispatch = useAppDispatch();
   useEffect(() => {
     dispatch(getCoins(10))
     dispatch(getNews({count: 7, query: 'cryptocurrency'}));
   }, [])
-  if (loading) {
+  if (loading && newsLoading) {
     return <h2>Loading...</h2>
   }
-  if (error) {
+  if (error || newsError) {
     return <h2>error</h2>
   }
   return (

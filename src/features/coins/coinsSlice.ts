@@ -23,6 +23,7 @@ export const getCoin = createAsyncThunk('coins/getCoin', async (id: string) => {
 
 const initialState: initialStateProp = {
   loading: true,
+  singleCoinLoading: true,
   coins: [],
   searchedCoins: [],
   singleCoin: {} as singleCoinProp,
@@ -59,10 +60,10 @@ const coinsSlice = createSlice({
         state.error =  action.error.message;
       })
       .addCase(getCoin.pending, (state) => {
-        state.loading = true;
+        state.singleCoinLoading = true;
       })
       .addCase(getCoin.fulfilled, (state, action: PayloadAction<SinglecoinDataProp> ) => {
-        state.loading = false;
+        state.singleCoinLoading = false;
         if (action.payload.message) {
           state.loading = false; 
           state.error = 'failed to fetch'         
@@ -72,7 +73,7 @@ const coinsSlice = createSlice({
         state.singleCoin = coin;
       })
       .addCase(getCoin.rejected, (state, action) => {
-        state.loading = false,
+        state.singleCoinLoading = false,
         state.error =  action.error.message;
       })
   }
