@@ -11,9 +11,18 @@ const options = {
 export const fetchCoins = async (count: number) => {
   try {
     const response = await fetch(`${baserUrl}coins?limit=${count}`, options);
-    if (response.status !== 200) {
+    if (!response.ok) {
       throw new Error('failed to fetch');
     }    
+    const result = await response.json();
+    return result;
+  } catch (error) {
+    return error;
+  }
+}
+export const fetchSingleCoin = async (id: string) => {
+  try {
+    const response = await fetch(`${baserUrl}coin/${id}`, options);
     const result = await response.json();
     return result;
   } catch (error) {

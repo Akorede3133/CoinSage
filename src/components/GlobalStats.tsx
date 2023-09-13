@@ -3,6 +3,7 @@ import millify from "millify";
 
 const GlobalStats = () => {
   const { globalStats: { totalCoins, totalExchanges, totalMarketCap, total24hVolume, totalMarkets } } = useAppSelector((state) => state.coins);
+  
   return (
     <section>
       <h2 className=' text-4xl'>Global Crypto Stats</h2>

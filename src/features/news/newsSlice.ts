@@ -11,10 +11,11 @@ const initialState: newsStateProp = {
 
 export const getNews = createAsyncThunk('news/getNews', async (params: {count: number, query: string}) => {
   const {count, query} = params;
+  
   try {
-    const { value } = await fetchNews(count, query);    
+    const { value } = await fetchNews(count, query); 
     return value;
-  } catch (error) {
+  } catch (error) {    
     return error;
   }
 })
@@ -28,11 +29,11 @@ const newsSlice = createSlice({
         state.loading = true;
       })
       .addCase(getNews.fulfilled, (state, action: PayloadAction<newsProp[]>) => {
-        state.loading = false;
+        state.loading = false;        
         state.news = action.payload;  
       })
       .addCase(getNews.rejected, (state, action) => {
-        state.loading = false;
+        state.loading = false;        
         state.error = action.error.message;
       })
   }

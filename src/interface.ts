@@ -12,6 +12,11 @@ export interface coinsProp {
   message?: string
   data: {stats: globalStatsProp, coins: coinProp[]}
 }
+export interface SinglecoinDataProp {
+  status: string,
+  message?: string
+  data: {coin: singleCoinProp}
+}
 export interface globalStatsProp {
   totalCoins: number,
   totalMarketCap: string,
@@ -23,7 +28,7 @@ export interface singleCoinProp extends coinProp {
   symbol: string,
   description: string,
   "24hVolume": string,
-  allTimeHigh: { price: string, timeStamp:number },
+  allTimeHigh: { price: string },
   links: {name: string, type: string, url: string}[],
   supply: { total: string, circulating: string},
   numberOfMarkets: number,

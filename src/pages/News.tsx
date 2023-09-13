@@ -23,7 +23,7 @@ const News = () => {
   }, [search])
   useEffect(() => {
     dispatch(getCoins(100));
-    dispatch(getNews({count: 13, query: placeholder}));
+    dispatch(getNews({count: 13, query: placeholder === 'Select a crypto' ? 'cryptocurrency' : placeholder}));
   }, [placeholder, dispatch])
   const handleClick = (value: string) => {
     setSearch('');
