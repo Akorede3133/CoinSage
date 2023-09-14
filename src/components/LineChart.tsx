@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import { useAppSelector } from '../app/hooks';
 import {
   Chart as ChartJS,
@@ -23,7 +22,7 @@ ChartJS.register(
   Legend
 );
 
-const LineChart = ( {name, price}: {name: string, price: number} ) => {
+const LineChart = ( {name, price}: {name: string, price: string} ) => {
   const { history } = useAppSelector((state) => state.coins);  
   const labels = history?.history?.map((history) => new Date(history.timestamp * 1000 ).toLocaleDateString());
   const data = {
@@ -56,7 +55,7 @@ const LineChart = ( {name, price}: {name: string, price: number} ) => {
         <h2 className='text-3xl capitalize font-bold text-blue-500'>{name} Price chart</h2>
         <div className='flex  gap-4'>
           <p className='font-bold text-xl'>{history?.change}%</p>
-          <p className='font-bold text-xl capitalize'>current {name} price: ${millify(price)}</p>
+          <p className='font-bold text-xl capitalize'>current {name} price: ${millify(+price)}</p>
         </div>
       </section>
       <Line options={options} data={data} />

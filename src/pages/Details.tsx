@@ -91,7 +91,7 @@ const Details = () => {
   return (
     <section className=" min-h-screen w-[85%] md:w-[90%] mx-auto my-10">
       <article className="border-b pb-5 border-gray-400">
-        <h2 className=" text-blue-600 text-3xl text-center pb-6">{singleCoin?.name} (BTC) Price</h2>
+        <h2 className=" text-blue-600 text-3xl text-center pb-6">{singleCoin?.name} ({singleCoin?.symbol}) Price</h2>
         <p className="">{singleCoin?.name} live price in US Dollar (USD). View value statistics, market cap and supply.</p>
       </article>
       <select name="" 
