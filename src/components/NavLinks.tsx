@@ -2,7 +2,7 @@ import { CSSProperties } from 'react';
 import { NavLink } from 'react-router-dom'
 import { AiOutlineHome } from 'react-icons/ai';
 import { AiOutlineLineChart } from 'react-icons/ai';
-import { PiCurrencyEthLight } from 'react-icons/pi';
+// import { PiCurrencyEthLight } from 'react-icons/pi';
 import { BiNews } from 'react-icons/bi';
 const NavLinks = ({ menuOpen }: { menuOpen: boolean }) => {
   const styles: CSSProperties = {
