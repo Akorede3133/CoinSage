@@ -23,12 +23,12 @@ const NavLinks = ({ menuOpen }: { menuOpen: boolean }) => {
             <span>Currencies</span>
           </NavLink>
         </li>
-        <li>
+        {/* <li>
           <NavLink to='exchanges' className='flex items-center gap-4 py-3 px-4 hover:bg-blue-300 w-full' style={({ isActive }) => isActive ? styles : {}}>
             <PiCurrencyEthLight />
             <span>Exchanges</span>
           </NavLink>
-        </li>
+        </li> */}
         <li>
           <NavLink to='news' className='flex items-center gap-4  py-3 px-4 hover:bg-blue-300 w-full' style={({ isActive }) => isActive ? styles : {}}>
             <BiNews />
