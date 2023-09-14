@@ -4,12 +4,12 @@ import { AiOutlineHome } from 'react-icons/ai';
 import { AiOutlineLineChart } from 'react-icons/ai';
 import { PiCurrencyEthLight } from 'react-icons/pi';
 import { BiNews } from 'react-icons/bi';
-const NavLinks = () => {
+const NavLinks = ({ menuOpen }: { menuOpen: boolean }) => {
   const styles: CSSProperties = {
     backgroundColor: 'rgb(96, 165, 250)'
   }
   return (
-    <nav className=' absolute md:static right-0 top-[100%]  md:bg-[unset] hidden bg-slate-900 md:w-full  md:block w-[35%]'>
+    <nav className={`absolute md:static right-0 top-[100%]  md:bg-[unset] ${menuOpen || 'hidden'} bg-slate-900 md:w-full  md:block w-[35%]`}>
       <ul className='text-white'>
         <li>
           <NavLink to='/' className='flex items-center gap-4  py-3 px-4 hover:bg-blue-300 w-full' style={({ isActive }) => isActive ? styles : {}}>
