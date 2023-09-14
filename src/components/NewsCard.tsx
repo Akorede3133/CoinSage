@@ -31,7 +31,7 @@ const NewsCard = ({ description, name, url, image, provider,datePublished }: new
             <img src={providerImg ? providerImg : defaultImg} alt="" className='w-[40px] h-[40px] object-cover rounded-full'/>
             <p>{providerName}</p>
           </div>
-          <p>{timeAgo}</p>
+          <p className='mt-4'>{timeAgo}</p>
         </footer>
       </a>
     </li>
