@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
-import { initialStateProp, globalStatsProp, singleCoinProp, coinsProp, SinglecoinDataProp, historyDataProp } from "../../interface";
+import { initialStateProp, globalStatsProp, singleCoinProp, coinsProp, SinglecoinDataProp, historyDataProp, historyProp } from "../../interface";
 import { fetchCoins, fetchHistory, fetchSingleCoin } from "../../api/coinsApi";
 
 export const getCoins = createAsyncThunk('coins/getCoins', async (count: number) => {
@@ -35,8 +35,8 @@ const initialState: initialStateProp = {
   singleCoinLoading: true,
   historyLoading: true,
   coins: [],
+  history: {} as historyProp,
   searchedCoins: [],
-  history: [],
   singleCoin: {} as singleCoinProp,
   globalStats: {} as globalStatsProp,
   error: ''
@@ -97,8 +97,8 @@ const coinsSlice = createSlice({
           state.error = 'failed to fetch'         
           return;
         }        
-        const { data: { history }}  =  action.payload;
-        state.history = history;
+        const { data }  =  action.payload;
+        state.history = data;
       })
       .addCase(getHistory.rejected, (state, action) => {
         state.historyLoading = false,

@@ -14,16 +14,15 @@ import millify from 'millify';
 const Details = () => {
   const { id } = useParams();
   const dispatch = useAppDispatch();
-  const { singleCoin, singleCoinLoading, error, history } = useAppSelector((state) => state.coins);
-  const [period, setPeriod] = useState<string>('');
-  console.log(period);
+  const { singleCoin, singleCoinLoading, error } = useAppSelector((state) => state.coins);
+  const [period, setPeriod] = useState<string>('24h');
   
   useEffect(() => {
     if (id) {
       dispatch(getCoin(id))
-      dispatch(getHistory({id, period: '24h'}))
+      dispatch(getHistory({id, period}))
     }
-  }, [id, dispatch]);
+  }, [id, dispatch, period]);
   if (singleCoinLoading) {
     return <h2>Loading...</h2>
   }
@@ -98,6 +97,7 @@ const Details = () => {
       <select name="" 
         id=""
         className="w-[200px] cursor-pointer outline-blue-300 p-1 mt-5 border hover:border-blue-400 rounded-md"
+        value={period}
         onChange={(e : React.ChangeEvent<HTMLSelectElement>)=> setPeriod(e.target.value)}
         >
         {
@@ -109,7 +109,7 @@ const Details = () => {
           ))
         }
       </select>
-      <LineChart id={id} period={period} />
+      <LineChart name={singleCoin?.name} price={singleCoin?.price} />
       <section className="md:grid  gap-10 grid-cols-2">
         <article>
           <h3 className=" text-2xl text-blue-400 pt-4">{singleCoin?.name} Value Statistics</h3>

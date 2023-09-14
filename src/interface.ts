@@ -19,12 +19,16 @@ export interface SinglecoinDataProp {
 }
 export interface historyDataProp {
   status: string,
-  message?: string
-  data: {history: historyProp[]}
+  message?: string,
+  data: historyProp,
 }
 export interface historyProp {
-  price: string;
-  timestamp: number;
+  history: historyItemProp[], 
+  change: string
+}
+export interface historyItemProp  {
+  price: string,
+  timestamp: number, 
 }
 export interface globalStatsProp {
   totalCoins: number,
@@ -50,7 +54,7 @@ export interface initialStateProp {
   coins: coinProp[],
   searchedCoins: coinProp[]
   singleCoin: singleCoinProp,
-  history: historyProp[],
+  history: historyProp,
   error: string | undefined,
   globalStats: globalStatsProp,
 }
