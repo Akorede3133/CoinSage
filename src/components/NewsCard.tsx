@@ -1,5 +1,4 @@
 import { newsProp } from '../interface';
-import { useAppSelector } from '../app/hooks';
 import moment from 'moment';
 
 const NewsCard = ({ description, name, url, image, provider,datePublished }: newsProp) => {
