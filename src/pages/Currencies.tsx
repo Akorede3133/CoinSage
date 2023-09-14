@@ -4,6 +4,8 @@ import CryptoCard from "../components/CryptoCard"
 import { useAppDispatch, useAppSelector } from "../app/hooks";
 import { getCoins, searchCoins } from "../features/coins/coinsSlice";
 import { coinProp } from "../interface";
+import Loading from "../components/Loading";
+import Error from "../components/Error";
 const Currencies = () => {
   const dispatch = useAppDispatch();
   const [search, setSearch] = useState<string>('');
@@ -11,7 +13,7 @@ const Currencies = () => {
     setSearch(e.target.value);
     dispatch(searchCoins(e.target.value))
   }
-  const {coins, searchedCoins, loading} = useAppSelector((state) => state.coins);
+  const {coins, searchedCoins, loading, error} = useAppSelector((state) => state.coins);
 
   const displayedCoins = search ? searchedCoins : coins;
   useEffect(() => {
@@ -19,7 +21,10 @@ const Currencies = () => {
    }, [dispatch])
 
   if (loading) {
-    return <h2>Loading...</h2>
+    return <Loading />
+  }
+  if (error) {
+    return <Error />
   }
   return (
     <div className="w-[93%] mx-auto my-10 min-h-screen">

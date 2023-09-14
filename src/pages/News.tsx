@@ -6,6 +6,8 @@ import NewsCard from '../components/NewsCard'
 import {AiOutlineSearch} from 'react-icons/ai';
 import {RiArrowDropDownLine} from 'react-icons/ri';
 import { getCoins } from '../features/coins/coinsSlice';
+import Loading from '../components/Loading';
+import Error from '../components/Error';
 
 const News = () => {
   const { news, loading, error } = useAppSelector((state) => state.news);
@@ -32,10 +34,10 @@ const News = () => {
     setSearchedCoins(coins)
   }
   if (loading && coinLoading) {
-    return <h2>Loading...</h2>
+    return <Loading />
   }
   if (error) {
-    return <h2>Error</h2>
+    return <Error />
   }
   return (
     <section className='min-h-screen w-[93%] mx-auto my-5'>

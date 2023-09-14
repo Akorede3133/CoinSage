@@ -5,6 +5,8 @@ import { getCoins } from '../features/coins/coinsSlice';
 import GlobalStats from '../components/GlobalStats';
 import Cryptos from '../components/Cryptos';
 import HomeNews from '../components/HomeNews';
+import Loading from '../components/Loading';
+import Error from '../components/Error';
 const Home = () => {
   const { loading, error } = useAppSelector((state) => state.coins);
   const { loading: newsLoading, error: newsError } = useAppSelector((state) => state.news);
@@ -14,10 +16,10 @@ const Home = () => {
     dispatch(getNews({count: 7, query: 'cryptocurrency'}));
   }, [])
   if (loading && newsLoading) {
-    return <h2>Loading...</h2>
+    return <Loading />
   }
   if (error || newsError) {
-    return <h2>error</h2>
+    return <Error />
   }
   return (
     <main className='min-h-screen w-[93%] mx-auto py-5'>

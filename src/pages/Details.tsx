@@ -10,6 +10,8 @@ import {GiPodiumWinner} from 'react-icons/gi';
 import {AiFillAlipayCircle, AiOutlineBarChart, AiOutlineCheck} from 'react-icons/ai';
 import {PiWarningCircleLight} from 'react-icons/pi';
 import millify from 'millify';
+import Loading from '../components/Loading';
+import Error from '../components/Error';
 
 const Details = () => {
   const { id } = useParams();
@@ -24,10 +26,10 @@ const Details = () => {
     }
   }, [id, dispatch, period]);
   if (singleCoinLoading) {
-    return <h2>Loading...</h2>
+    return <Loading />
   }
   if (error) {
-    return <h2>error</h2>
+    return <Error />
   }
   const periods = ['1h', '3h', '12h', '24h', '7d', '30d', '3m', '1y', '3y', '5y'];
   const coinStats = [
