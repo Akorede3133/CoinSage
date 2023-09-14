@@ -1,7 +1,8 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../app/hooks';
 import { getCoin, getHistory } from '../features/coins/coinsSlice';
+import LineChart from '../components/LineChart';
 import {FaRankingStar} from 'react-icons/fa6';
 import {BsCurrencyExchange, BsSpeedometer2} from 'react-icons/bs'
 import {SiCoinmarketcap} from 'react-icons/si';
@@ -14,8 +15,9 @@ const Details = () => {
   const { id } = useParams();
   const dispatch = useAppDispatch();
   const { singleCoin, singleCoinLoading, error, history } = useAppSelector((state) => state.coins);
-    console.log(history);
-    
+  const [period, setPeriod] = useState<string>('');
+  console.log(period);
+  
   useEffect(() => {
     if (id) {
       dispatch(getCoin(id))
@@ -28,7 +30,7 @@ const Details = () => {
   if (error) {
     return <h2>error</h2>
   }
-  const period = ['1h', '3h', '12h', '24h', '7d', '30d', '3m', '1y', '3y', '5y'];
+  const periods = ['1h', '3h', '12h', '24h', '7d', '30d', '3m', '1y', '3y', '5y'];
   const coinStats = [
     {
       name: 'Price to USD', 
@@ -93,14 +95,21 @@ const Details = () => {
         <h2 className=" text-blue-600 text-3xl text-center pb-6">{singleCoin?.name} (BTC) Price</h2>
         <p className="">{singleCoin?.name} live price in US Dollar (USD). View value statistics, market cap and supply.</p>
       </article>
-      <select name="" id="" className="w-[200px] cursor-pointer outline-blue-300 p-1 mt-5 border hover:border-blue-400 rounded-md">
+      <select name="" 
+        id=""
+        className="w-[200px] cursor-pointer outline-blue-300 p-1 mt-5 border hover:border-blue-400 rounded-md"
+        onChange={(e : React.ChangeEvent<HTMLSelectElement>)=> setPeriod(e.target.value)}
+        >
         {
-          period.map((period) => (
-            <option key={period} value={period}>{period}</option>
+          periods.map((period) => (
+            <option 
+              key={period}
+              value={period}
+            >{period}</option>
           ))
         }
       </select>
-
+      <LineChart id={id} period={period} />
       <section className="md:grid  gap-10 grid-cols-2">
         <article>
           <h3 className=" text-2xl text-blue-400 pt-4">{singleCoin?.name} Value Statistics</h3>
