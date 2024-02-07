@@ -12,9 +12,12 @@ const options = {
 export const fetchNews = async (count: number, search: string) => {
   try {
     const response = await fetch(`${baserUrl}/news/search?q=${search}&freshness=Day&textFormat=Raw&safeSearch=Off&count=${count}`, options);    
-    const result = await response.json();       
+    const result = await response.json();    
+    if (!response.ok) {
+      throw new Error(result.message)
+    }       
     return result;
   } catch (error) {
-    return error;
+    throw new Error(error.message);
   }
 }

@@ -3,7 +3,16 @@ import { useAppSelector } from '../app/hooks';
 import { newsProp } from '../interface';
 import NewsCard from './NewsCard'
 const HomeNews = () => {
-  const { news } = useAppSelector((state) => state.news);
+  const { news, error } = useAppSelector((state) => state.news);
+  console.log(news, error);
+  if (error) {
+    return <p>An error ocurred</p>
+  }
+
+  
+  if (!Array.isArray(news)) {
+    return null;
+  }
   
   return (
     <section className='mt-10'>
@@ -15,7 +24,7 @@ const HomeNews = () => {
       </article>
       <ul className='mt-4 grid gap-3 md:grid-cols-[repeat(auto-fill,minmax(300px,1fr))]'>
         {
-          news.map((news: newsProp, index) => {
+          news && news.map((news: newsProp, index) => {
             const { description, image, provider, url, datePublished, name } = news;
             return (
               <NewsCard 

@@ -39,6 +39,14 @@ const News = () => {
   if (error) {
     return <Error />
   }
+  if (!Array.isArray(news)) {
+    return (
+      <div className=' min-h-screen flex items-center justify-center flex-col gap-3'>
+        <h1 className='text-3xl'>No news availble at the moment</h1>
+        <p>Please check back later</p>
+      </div>
+    )
+  }
   return (
     <section className='min-h-screen w-[93%] mx-auto my-5'>
       <article>
