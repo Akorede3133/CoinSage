@@ -18,6 +18,6 @@ export const fetchNews = async (count: number, search: string) => {
     }       
     return result;
   } catch (error) {
-    throw new Error(error.message);
+    throw new Error('Error fetching news');
   }
 }

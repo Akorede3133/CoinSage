@@ -4,11 +4,9 @@ import { newsProp } from '../interface';
 import NewsCard from './NewsCard'
 const HomeNews = () => {
   const { news, error } = useAppSelector((state) => state.news);
-  console.log(news, error);
   if (error) {
     return <p>An error ocurred</p>
   }
-
   
   if (!Array.isArray(news)) {
     return null;
